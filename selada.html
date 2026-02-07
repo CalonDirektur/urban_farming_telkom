@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selada | Urban Farming Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              leaf: "#2D5A27",
+              sprout: "#84CC16",
+              earth: "#78716C",
+              moss: "#166534",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Cursor Light Trail */
+      #cursor-glow {
+        pointer-events: none;
+        position: fixed;
+        width: 250px;
+        height: 250px;
+        background: radial-gradient(
+          circle,
+          rgba(132, 204, 22, 0.15) 0%,
+          rgba(132, 204, 22, 0) 70%
+        );
+        border-radius: 50%;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: width 0.3s, height 0.3s;
+      }
+
+      /* Parallax Background */
+      .parallax-wrap {
+        perspective: 1000px;
+        overflow: hidden;
+      }
+      #hero-bg {
+        transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+      }
+
+      .islamic-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l5.878 18.09h19.021l-15.388 11.18 5.878 18.091L30 36.18l-15.389 11.18 5.878-18.091L5.101 18.09h19.021z' fill='%232d5a27' fill-opacity='0.05'/%3E%3C/svg%3E");
+      }
+
+      .glow-hover:hover {
+        text-shadow: 0 0 20px rgba(132, 204, 22, 0.6);
+        transform: scale(1.05);
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-stone-50 text-stone-900 dark:bg-stone-950 dark:text-stone-100 transition-colors duration-500 font-sans overflow-x-hidden"
+  >
+    <div id="cursor-glow" class="hidden md:block"></div>
+
+        <!-- Floating Home / Back Button (Top Left - High Contrast) -->
+<div class="fixed top-6 left-6 z-50">
+  <a
+    href="index.php"
+    aria-label="Kembali ke Beranda"
+    class="group relative p-4 rounded-full
+           bg-black/30 dark:bg-black/40
+           backdrop-blur-xl
+           border border-white/30
+           shadow-2xl shadow-black/40
+           hover:scale-110 transition-all
+           flex items-center justify-center"
+  >
+    <!-- subtle glow -->
+    <span class="absolute inset-0 rounded-full bg-sprout/30 blur-xl opacity-0 group-hover:opacity-100 transition"></span>
+
+    <!-- icon -->
+    <i
+      class="fas fa-arrow-left text-xl text-white
+             drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]
+             group-hover:-translate-x-0.5 transition-transform relative z-10">
+    </i>
+  </a>
+</div>
+
+    <div class="fixed top-6 right-6 z-50">
+      <button
+        onclick="toggleTheme()"
+        class="p-4 rounded-2xl glass shadow-2xl hover:scale-110 transition-all border border-stone-200 dark:border-stone-800"
+      >
+        <span id="theme-icon" class="text-xl">🌙</span>
+      </button>
+    </div>
+
+    <section
+      class="relative h-screen flex items-center justify-center parallax-wrap"
+    >
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1723110569402-6eec857daa4d?q=80&w=1548"
+          id="hero-bg"
+          alt="Selada Plantation"
+          class="w-full h-full object-cover scale-110"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-black/30 via-stone-900/40 to-stone-950"
+        ></div>
+      </div>
+
+      <div
+        class="relative z-10 text-center px-6"
+        data-aos="fade-up"
+        data-aos-duration="1500"
+      >
+        <div
+          class="inline-block mb-6 py-2 px-6 rounded-full glass border border-white/20 text-white text-sm tracking-[0.3em] uppercase animate-pulse"
+        >
+          Urban Farming Experience
+        </div>
+        <h1
+          class="font-serif text-7xl md:text-9xl font-bold text-white mb-6 tracking-tight"
+        >
+          SELADA
+        </h1>
+        <p
+          class="text-xl md:text-3xl text-stone-200 max-w-3xl mx-auto font-light leading-relaxed"
+        >
+          Sayuran segar, renyah,
+          <span class="text-sprout font-semibold">menyejukkan tubuh</span>,
+          penuh nutrisi.
+        </p>
+        <div class="mt-12 flex justify-center gap-4">
+          <div class="w-1 h-12 bg-sprout rounded-full animate-bounce"></div>
+        </div>
+      </div>
+
+      <div class="absolute bottom-10 opacity-20 text-white text-6xl">
+        <i class="fas fa-star-and-crescent"></i>
+      </div>
+    </section>
+
+    <section id="manfaat" class="py-32 px-6 max-w-7xl mx-auto">
+      <div
+        class="flex flex-col md:flex-row justify-between items-end mb-20 gap-6"
+      >
+        <div data-aos="fade-right">
+          <h2 class="text-sprout font-bold tracking-widest uppercase mb-2">
+            Manfaat Kesehatan
+          </h2>
+          <h3 class="text-4xl md:text-5xl font-bold">
+            Kebaikan Dalam Renyahan
+          </h3>
+        </div>
+        <p class="text-stone-500 max-w-md italic" data-aos="fade-left">
+          Selada bukan sekadar hiasan piring, melainkan sumber kehidupan yang
+          menyegarkan raga.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          class="group p-10 bg-white dark:bg-stone-900 rounded-[2.5rem] border border-stone-100 dark:border-stone-800 shadow-sm hover:shadow-2xl transition-all hover:-translate-y-3"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <div
+            class="w-16 h-16 bg-stone-50 dark:bg-stone-800 text-sprout rounded-2xl flex items-center justify-center mb-8 group-hover:bg-sprout group-hover:text-white transition-all duration-500"
+          >
+            <i class="fas fa-tint text-2xl"></i>
+
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Menjaga hidrasi kulit</h4>
+          <p class="text-stone-500 dark:text-stone-400">
+            Selada memiliki kandungan air sebanyak 98 persen. Hal ini membantu tubuh untuk tetap terhidrasi dengan baik. Ketika tubuh terhidrasi dengan baik, maka kondisi ini juga akan membuat kesehatan kulit semakin optimal. Kulit akan terhindar dari kondisi kering, kusam, hingga gatal.
+          </p>
+        </div>
+
+        <div
+          class="group p-10 bg-white dark:bg-stone-900 rounded-[2.5rem] border border-stone-100 dark:border-stone-800 shadow-sm hover:shadow-2xl transition-all hover:-translate-y-3"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div
+            class="w-16 h-16 bg-stone-50 dark:bg-stone-800 text-sprout rounded-2xl flex items-center justify-center mb-8 group-hover:bg-sprout group-hover:text-white transition-all duration-500"
+          >
+            <i class="fas fa-bone text-2xl"></i>
+
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Mengoptimalkan kekuatan tulang</h4>
+          <p class="text-stone-500 dark:text-stone-400">
+            Sayuran ini tinggi akan vitamin K di dalamnya. Memenuhi kebutuhan vitamin K mampu mengoptimalkan kesehatan tulang menjadi lebih kuat.Selain mengandung vitamin K, selada juga mengandung kalsium yang bisa membantu untuk memperkuat tulang. 
+          </p>
+        </div>
+
+        <div
+          class="group p-10 bg-white dark:bg-stone-900 rounded-[2.5rem] border border-stone-100 dark:border-stone-800 shadow-sm hover:shadow-2xl transition-all hover:-translate-y-3"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <div
+            class="w-16 h-16 bg-stone-50 dark:bg-stone-800 text-sprout rounded-2xl flex items-center justify-center mb-8 group-hover:bg-sprout group-hover:text-white transition-all duration-500"
+          >
+            <i class="fas fa-eye text-2xl"></i>
+
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Mengoptimalkan penglihatan</h4>
+          <p class="text-stone-500 dark:text-stone-400">
+            Selada mengandung vitamin A yang cukup tinggi. Vitamin ini berperan dalam menjaga kesehatan mata. Dengan terpenuhinya vitamin A dalam tubuh, ini bisa membantu kamu dalam meningkatkan kualitas penglihatan. Selada juga mengandung antioksidan zeaxanthin yang bisa mengoptimalkan kesehatan mata dan mencegah berbagai penyakit mata.
+
+
+          </p>
+        </div>
+
+        <div
+          class="group p-10 bg-white dark:bg-stone-900 rounded-[2.5rem] border border-stone-100 dark:border-stone-800 shadow-sm hover:shadow-2xl transition-all hover:-translate-y-3"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          <div
+            class="w-16 h-16 bg-stone-50 dark:bg-stone-800 text-sprout rounded-2xl flex items-center justify-center mb-8 group-hover:bg-sprout group-hover:text-white transition-all duration-500"
+          >
+            <i class="fas fa-chart-line text-2xl"></i>
+
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Menurunkan kadar kolesterol</h4>
+          <p class="text-stone-500 dark:text-stone-400">
+            Mengonsumsinya bisa membantu kamu untuk menurunkan kadar kolesterol dalam tubuh. Ketika kadar kolesterol terkontrol dengan baik, kondisi ini membuat kamu terhindar dari penyakit jantung.
+          </p>
+        </div>
+
+        <div
+          class="group p-10 bg-white dark:bg-stone-900 rounded-[2.5rem] border border-stone-100 dark:border-stone-800 shadow-sm hover:shadow-2xl transition-all hover:-translate-y-3"
+          data-aos="fade-up"
+          data-aos-delay="500"
+        >
+          <div
+            class="w-16 h-16 bg-stone-50 dark:bg-stone-800 text-sprout rounded-2xl flex items-center justify-center mb-8 group-hover:bg-sprout group-hover:text-white transition-all duration-500"
+          >
+            <i class="fas fa-balance-scale text-2xl"></i>
+
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Membantu menurunkan berat badan</h4>
+          <p class="text-stone-500 dark:text-stone-400">
+            Melansir dari PLoS Medicine, mengonsumsi selada yang mengandung serat tinggi mampu meningkatkan rasa kenyang. Selada mengandung serat dan rendah kalori sehingga cocok untuk menurunkan berat badan.
+
+
+          </p>
+        </div>
+
+        <div
+          class="group p-10 bg-white dark:bg-stone-900 rounded-[2.5rem] border border-stone-100 dark:border-stone-800 shadow-sm hover:shadow-2xl transition-all hover:-translate-y-3"
+          data-aos="fade-up"
+          data-aos-delay="600"
+        >
+          <div
+            class="w-16 h-16 bg-stone-50 dark:bg-stone-800 text-sprout rounded-2xl flex items-center justify-center mb-8 group-hover:bg-sprout group-hover:text-white transition-all duration-500"
+          >
+            <i class="fas fa-heartbeat text-2xl"></i>
+
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Menurunkan tekanan darah</h4>
+          <p class="text-stone-500 dark:text-stone-400">
+            Selain menjaga kesehatan jantung, kandungan potasium juga baik bagi pengidap tekanan darah tinggi. Potasium membantu menurunkan tekanan darah tinggi dengan cara mengurangi efek natrium dan melebarkan pembuluh darah.
+          </p>
+        </div>
+
+        <div
+  class="group p-10 
+         bg-stone-50 dark:bg-stone-900/80 
+         rounded-[2.5rem] 
+         border border-dashed border-sprout/40 
+         shadow-sm hover:shadow-xl 
+         transition-all duration-500
+         col-span-1 md:col-span-2 lg:col-span-3"
+  data-aos="fade-up"
+  data-aos-delay="700"
+>
+  <h4 class="text-2xl font-bold mb-4 italic text-leaf dark:text-sprout">
+    Sumber Informasi
+  </h4>
+
+  <ul class="space-y-4 text-sm text-stone-600 dark:text-stone-400 max-w-3xl">
+    <li class="flex items-start gap-2">
+      <i class="fas fa-link mt-0.5 text-sprout"></i>
+      <span>
+        Halodoc :
+        <a
+          href="https://www.halodoc.com/artikel/13-manfaat-selada-untuk-kesehatan-dan-kecantikan"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="italic underline decoration-sprout hover:text-sprout transition-colors
+                 inline-block max-w-full overflow-x-auto whitespace-nowrap"
+        >
+          https://www.halodoc.com/artikel/13-manfaat-selada-untuk-kesehatan-dan-kecantikan
+        </a>
+      </span>
+    </li>
+  </ul>
+
+  <p class="mt-6 text-xs italic text-stone-400">
+    Informasi disusun dari sumber kesehatan terpercaya untuk tujuan edukasi.
+  </p>
+</div>
+
+
+      </div>
+    </section>
+
+    <section class="py-24 bg-stone-100 dark:bg-stone-900/50 islamic-pattern">
+      <div class="max-w-5xl mx-auto px-6">
+        <div
+          class="bg-white dark:bg-stone-800 rounded-[3rem] overflow-hidden flex flex-col md:flex-row shadow-2xl border border-stone-200 dark:border-stone-700"
+        >
+          <div
+            class="md:w-1/2 p-12 md:p-16 bg-leaf text-white flex flex-col justify-center"
+          >
+            <h2 class="text-4xl font-bold mb-8">Tahukah Kamu?</h2>
+            <ul class="space-y-8">
+              <li class="flex items-start gap-4">
+                <span
+                  class="w-8 h-8 rounded-full bg-sprout flex-shrink-0 flex items-center justify-center font-bold text-xs"
+                  >1</span
+                >
+                <p class="text-lg">
+                  Selada mengandung lebih dari
+                  <span class="text-sprout font-bold">90% air</span> sehingga
+                  sangat menyegarkan bagi tubuh.
+                </p>
+              </li>
+              <li class="flex items-start gap-4">
+                <span
+                  class="w-8 h-8 rounded-full bg-sprout flex-shrink-0 flex items-center justify-center font-bold text-xs"
+                  >2</span
+                >
+                <p class="text-lg">
+                  Tanam di tanah gembur atau
+                  <span class="text-sprout font-bold">hidroponik</span> dengan
+                  paparan cahaya yang cukup.
+                </p>
+              </li>
+              <li class="flex items-start gap-4">
+                <span
+                  class="w-8 h-8 rounded-full bg-sprout flex-shrink-0 flex items-center justify-center font-bold text-xs"
+                  >3</span
+                >
+                <p class="text-lg">
+                  Masa tumbuh yang singkat: Bisa dipanen
+                  <span class="text-sprout font-bold">25–35 hari</span> setelah
+                  tanam.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="md:w-1/2 p-12 md:p-16 flex flex-col justify-center">
+            <div class="mb-6 inline-block w-16 h-1 bg-sprout"></div>
+            <h3 class="text-2xl font-bold mb-4 italic">Belajar dari Alam</h3>
+            <p class="text-stone-500 dark:text-stone-400 leading-relaxed">
+              Menanam selada adalah latihan kesabaran dan ketelitian. Seperti
+              air yang menghidupkan selada, semoga ilmu yang kita pelajari hari
+              ini menghidupkan hati kita.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-32 px-6 text-center">
+      <div class="max-w-4xl mx-auto" data-aos="zoom-in">
+        <h2 class="font-serif text-3xl mb-10 text-leaf dark:text-sprout italic">
+          Renungan dari Al-Qur’an
+        </h2>
+        <div class="mb-8">
+          <p class="text-3xl md:text-5xl leading-tight font-light mb-8 italic">
+            “Tidakkah kamu memperhatikan bahwa Allah menurunkan air dari langit,
+            lalu Kami tumbuhkan dengan air itu berbagai macam tumbuh-tumbuhan di
+            bumi.”
+          </p>
+          <div class="h-1 w-20 bg-earth mx-auto mb-4 opacity-30"></div>
+          <p class="font-bold tracking-widest text-stone-400">
+            (QS. Az-Zumar: 21)
+          </p>
+        </div>
+        <p class="text-xl text-stone-500 dark:text-stone-400 font-light italic">
+          Tanaman adalah tanda kebesaran Allah dan sarana untuk menjaga
+          kehidupan di bumi.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-32 px-6">
+      <div
+        class="max-w-6xl mx-auto bg-leaf rounded-[4rem] p-16 md:p-28 text-center text-white relative overflow-hidden shadow-2xl"
+      >
+        <div class="absolute inset-0 islamic-pattern opacity-10"></div>
+
+        <div class="relative z-10" data-aos="fade-up">
+          <h2
+            class="glow-hover text-4xl md:text-7xl font-black mb-8 leading-tight tracking-tighter uppercase transition-all duration-500 cursor-default"
+          >
+            Hijaukan Masjid.<br />Rawat Bumi.<br />Tebar Manfaat.
+          </h2>
+          <p
+            class="text-xl md:text-2xl text-stone-200/80 max-w-2xl mx-auto font-light mb-12"
+          >
+            Dari satu tanaman, tumbuh kebaikan untuk manusia, alam, dan rumah
+            ibadah.
+          </p>
+
+          <a href="donasi.php" class="inline-block">
+    <button class="px-14 py-6 bg-leaf text-white rounded-full font-bold text-lg hover:bg-night transition-all shadow-2xl hover:scale-105">
+        Ayo Beramal Jariyah Sekarang <i class="fas fa-arrow-right ml-2 text-sprout"></i>
+    </button>
+        </a>
+        
+          <!-- <button
+            class="px-12 py-5 bg-sprout text-leaf rounded-full font-bold text-lg shadow-xl hover:shadow-sprout/50 hover:scale-105 transition-all duration-300"
+          >
+            Mulai Tanam Hari Ini
+          </button> -->
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-12 text-center text-stone-400 text-sm">
+      <p>&copy; 2026 Urban Farming Experience • Komunitas Hijau Masjid</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 1000, once: true });
+
+      // Cursor & Parallax Logic
+      const glow = document.getElementById("cursor-glow");
+      const heroBg = document.getElementById("hero-bg");
+
+      document.addEventListener("mousemove", (e) => {
+        // Glow Follower
+        glow.style.left = e.clientX + "px";
+        glow.style.top = e.clientY + "px";
+
+        // Parallax Effect
+        const x = (window.innerWidth / 2 - e.pageX) / 40;
+        const y = (window.innerHeight / 2 - e.pageY) / 40;
+        heroBg.style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
+      });
+
+      // Theme Toggle
+      function toggleTheme() {
+        const html = document.documentElement;
+        const icon = document.getElementById("theme-icon");
+        if (html.classList.contains("dark")) {
+          html.classList.remove("dark");
+          icon.innerText = "🌙";
+          localStorage.theme = "light";
+        } else {
+          html.classList.add("dark");
+          icon.innerText = "☀️";
+          localStorage.theme = "dark";
+        }
+      }
+
+      // Init Theme
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+        document.getElementById("theme-icon").innerText = "☀️";
+      }
+    </script>
+  </body>
+</html>

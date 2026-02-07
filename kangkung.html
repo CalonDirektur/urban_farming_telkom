@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kangkung | Urban Farming Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              leaf: "#2D5A27",
+              sprout: "#76BA1B",
+              earth: "#4B3621",
+              gold: "#D4AF37",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom Cursor/Light Follower */
+      #light-trail {
+        pointer-events: none;
+        position: fixed;
+        width: 150px;
+        height: 150px;
+        background: radial-gradient(
+          circle,
+          rgba(118, 186, 27, 0.15) 0%,
+          rgba(118, 186, 27, 0) 70%
+        );
+        border-radius: 50%;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: width 0.3s, height 0.3s;
+      }
+
+      .hero-title {
+        text-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .islamic-pattern {
+        background-color: transparent;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 0l10 30h30L55 50l10 30-25-20-25 20 10-30L0 30h30z' fill='%232d5a27' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+      }
+
+      .glow-text:hover {
+        text-shadow: 0 0 15px rgba(118, 186, 27, 0.8);
+        transform: scale(1.02);
+        transition: all 0.3s ease;
+      }
+
+      .parallax-bg {
+        transition: transform 0.1s ease-out;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-stone-50 text-slate-900 dark:bg-stone-950 dark:text-stone-100 transition-colors duration-500 font-sans overflow-x-hidden"
+  >
+    <div id="light-trail"></div>
+    <!-- Floating Back / Home Button (Top Left) -->
+<!-- Floating Home / Back Button (Top Left - High Contrast) -->
+<div class="fixed top-6 left-6 z-50">
+  <a
+    href="index.php"
+    aria-label="Kembali ke Beranda"
+    class="group relative p-4 rounded-full
+           bg-black/30 dark:bg-black/40
+           backdrop-blur-xl
+           border border-white/30
+           shadow-2xl shadow-black/40
+           hover:scale-110 transition-all
+           flex items-center justify-center"
+  >
+    <!-- subtle glow -->
+    <span class="absolute inset-0 rounded-full bg-sprout/30 blur-xl opacity-0 group-hover:opacity-100 transition"></span>
+
+    <!-- icon -->
+    <i
+      class="fas fa-arrow-left text-xl text-white
+             drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]
+             group-hover:-translate-x-0.5 transition-transform relative z-10">
+    </i>
+  </a>
+</div>
+
+
+
+    <div class="fixed top-6 right-6 z-50">
+      <button
+        onclick="toggleTheme()"
+        class="p-4 rounded-full bg-white/10 dark:bg-stone-800/50 backdrop-blur-xl border border-white/20 shadow-2xl hover:scale-110 transition-all"
+      >
+        <span id="theme-icon" class="text-xl">🌙</span>
+      </button>
+    </div>
+
+    <section
+      class="relative h-screen flex items-center justify-center overflow-hidden"
+    >
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1662318183265-5bbe6578d1b0?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          id="hero-img"
+          alt="Kangkung"
+          class="w-full h-full object-cover parallax-bg scale-110"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80"
+        ></div>
+      </div>
+
+      <div
+        class="relative z-10 text-center px-4"
+        data-aos="fade-up"
+        data-aos-duration="1500"
+      >
+        <div class="mb-8 flex justify-center">
+          <div class="relative group">
+            <div
+              class="absolute -inset-4 bg-sprout/50 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000"
+            ></div>
+            <div
+              class="relative w-20 h-20 bg-white/10 backdrop-blur-md border border-white/30 rounded-full flex items-center justify-center"
+            >
+              <i class="fas fa-leaf text-sprout text-4xl"></i>
+            </div>
+          </div>
+        </div>
+        <h1
+          class="hero-title text-7xl md:text-9xl font-black text-white tracking-tighter mb-4 italic"
+        >
+          KANGKUNG
+        </h1>
+        <p
+          class="text-xl md:text-3xl text-stone-200 max-w-2xl mx-auto font-light leading-relaxed"
+        >
+          Sayuran hijau segar, mudah tumbuh,
+          <span class="font-bold text-sprout">penuh manfaat.</span>
+        </p>
+        <div class="mt-16 animate-bounce opacity-50">
+          <i class="fas fa-mouse text-white text-2xl"></i>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="manfaat"
+      class="py-32 px-6 max-w-7xl mx-auto italic islamic-pattern"
+    >
+      <div class="text-center mb-20" data-aos="fade-up">
+        <h2
+          class="text-sm uppercase tracking-[0.4em] text-sprout font-bold mb-4"
+        >
+          Nutrisi & Khasiat
+        </h2>
+        <h3 class="text-5xl font-bold dark:text-white">
+          Kebaikan Di Setiap Helai
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div
+          class="group p-10 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[2rem] shadow-sm hover:shadow-2xl transition-all hover:-translate-y-2"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <div
+            class="w-14 h-14 bg-green-50 dark:bg-green-900/20 text-sprout rounded-2xl flex items-center justify-center mb-8 group-hover:bg-sprout group-hover:text-white transition-all"
+          >
+            <i class="fas fa-eye text-2xl"></i>
+
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Kesehatan Mata</h4>
+          <p class="text-slate-600 dark:text-stone-400 leading-relaxed">
+            Konsumsi kangkung dapat membantu menjaga kesehatan mata. Hal ini karena kandungan beta karoten yang cukup tinggi pada kangkung berperan dalam melindungi sel-sel mata dari kerusakan. Selain itu, beta-karoten merupakan bahan baku vitamin A dalam tubuh.
+          </p>
+        </div>
+
+        <div
+          class="group p-10 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[2rem] shadow-sm hover:shadow-2xl transition-all hover:-translate-y-2"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div
+            class="w-14 h-14 bg-green-50 dark:bg-green-900/20 text-sprout rounded-2xl flex items-center justify-center mb-8 group-hover:bg-sprout group-hover:text-white transition-all"
+          >
+            <i class="fas fa-droplet text-2xl"></i>
+
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Mengatur keseimbangan cairan</h4>
+          <p class="text-slate-600 dark:text-stone-400 leading-relaxed">
+            Orang dewasa membutuhkan kalium sekitar 3.500–4.700 mg per hari. Guna memenuhinya, Anda perlu untuk mengonsumsi makanan yang mengandung kalium, seperti kangkung.
+          </p>
+        </div>
+
+        <div
+          class="group p-10 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[2rem] shadow-sm hover:shadow-2xl transition-all hover:-translate-y-2"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <div
+            class="w-14 h-14 bg-green-50 dark:bg-green-900/20 text-sprout rounded-2xl flex items-center justify-center mb-8 group-hover:bg-sprout group-hover:text-white transition-all"
+          >
+            <i class="fas fa-bolt text-2xl"></i>
+
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Melawan radikal bebas</h4>
+          <p class="text-slate-600 dark:text-stone-400 leading-relaxed">
+            Kangkung mengandung Antioksidan yang dibutuhkan tubuh untuk menangkal radikal bebas yang bisa menjadi penyebab kerusakan DNA, sel, jaringan, dan bahkan organ tubuh. Jika dibiarkan, radikal bebas berlebih dalam tubuh bisa memicu beragam penyakit serius, seperti diabetes dan kanker.
+          </p>
+        </div>
+
+        <div
+          class="group p-10 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[2rem] shadow-sm hover:shadow-2xl transition-all hover:-translate-y-2"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <div
+            class="w-14 h-14 bg-green-50 dark:bg-green-900/20 text-sprout rounded-2xl flex items-center justify-center mb-8 group-hover:bg-sprout group-hover:text-white transition-all"
+          >
+            <i class="fas fa-shield text-2xl"></i>
+
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Meningkatkan Imunitas Tubuh</h4>
+          <p class="text-slate-600 dark:text-stone-400 leading-relaxed">
+            Vitamin A dan C dalam kangkung juga mampu meningkatkan imunitas tubuh. Kedua vitamin ini diketahui turut terlibat dalam aktivasi sel darah putih yang berfungsi melawan infeksi. Selain itu, aktivitas antioksidan dari vitamin A dan C juga dapat melindungi sel-sel imun dari kerusakan akibat radikal bebas.
+          </p>
+        </div>
+
+        <div
+          class="group p-10 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[2rem] shadow-sm hover:shadow-2xl transition-all hover:-translate-y-2"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div
+            class="w-14 h-14 bg-green-50 dark:bg-green-900/20 text-sprout rounded-2xl flex items-center justify-center mb-8 group-hover:bg-sprout group-hover:text-white transition-all"
+          >
+            <i class="fas fa-heart-pulse text-2xl"></i>
+
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Menurunkan tekanan darah</h4>
+          <p class="text-slate-600 dark:text-stone-400 leading-relaxed">
+            Kangkung bisa menjadi salah satu makanan penakluk tekanan darah tinggi. Manfaat kangkung yang satu ini didapatkan dari kandungan kaliumnya yang mampu mengatur dan menurunkan tekanan darah.
+          </p>
+        </div>
+
+        <div
+          class="group p-10 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-[2rem] shadow-sm hover:shadow-2xl transition-all hover:-translate-y-2"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <div
+            class="w-14 h-14 bg-green-50 dark:bg-green-900/20 text-sprout rounded-2xl flex items-center justify-center mb-8 group-hover:bg-sprout group-hover:text-white transition-all"
+          >
+            <i class="fas fa-leaf text-2xl"></i>
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Diet Sehat</h4>
+          <p class="text-slate-600 dark:text-stone-400 leading-relaxed">
+            Rendah lemak, padat gizi, serta kaya akan serat menjadikan Kangkung adalah pilihan sempurna untuk menjaga berat badan ideal.
+          </p>
+        </div>
+
+<div
+  class="group p-10 
+         bg-stone-50 dark:bg-stone-900/80 
+         rounded-[2.5rem] 
+         border border-dashed border-sprout/40 
+         shadow-sm hover:shadow-xl 
+         transition-all duration-500
+         col-span-1 md:col-span-2 lg:col-span-3"
+  data-aos="fade-up"
+  data-aos-delay="700"
+>
+  <h4 class="text-2xl font-bold mb-4 italic text-leaf dark:text-sprout">
+    Sumber Informasi
+  </h4>
+
+  <ul class="space-y-4 text-sm text-stone-600 dark:text-stone-400 max-w-3xl">
+    <li>
+      Alodokter :
+      <a
+        href="https://www.alodokter.com/5-manfaat-kangkung-yang-sayang-dilewatkan"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="italic underline decoration-sprout hover:text-sprout transition-colors
+               inline-block max-w-full overflow-x-auto whitespace-nowrap"
+      >
+        https://www.alodokter.com/5-manfaat-kangkung-yang-sayang-dilewatkan
+      </a>
+    </li>
+
+    <li>
+      Halodoc :
+      <a
+        href="https://www.halodoc.com/artikel/kangkung-sayuran-hijau-favorit-dan-manfaatnya"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="italic underline decoration-sprout hover:text-sprout transition-colors
+               inline-block max-w-full overflow-x-auto whitespace-nowrap"
+      >
+        https://www.halodoc.com/artikel/kangkung-sayuran-hijau-favorit-dan-manfaatnya
+      </a>
+    </li>
+  </ul>
+
+  <p class="mt-6 text-xs italic text-stone-400">
+    Informasi disusun berdasarkan literatur kesehatan terpercaya untuk tujuan
+    edukasi.
+  </p>
+</div>
+
+
+      </div>
+    </section>
+
+    <section
+      class="py-32 bg-leaf dark:bg-stone-900 text-white relative overflow-hidden"
+    >
+      <div class="absolute inset-0 opacity-10 islamic-pattern"></div>
+      <div
+        class="max-w-4xl mx-auto px-6 text-center relative z-10"
+        data-aos="zoom-in"
+      >
+        <h2 class="font-serif text-3xl mb-8 text-sprout tracking-widest italic">
+          Renungan dari Al-Qur’an
+        </h2>
+        <p class="text-3xl md:text-4xl leading-relaxed mb-10 font-light italic">
+          “Tidakkah kamu memperhatikan bahwa Allah menurunkan air dari langit,
+          lalu Kami tumbuhkan dengan air itu berbagai macam tumbuh-tumbuhan di
+          bumi.”
+        </p>
+        <div class="h-1 w-24 bg-sprout mx-auto mb-6"></div>
+        <p class="uppercase tracking-widest text-sm font-bold opacity-80">
+          (QS. Az-Zumar: 21)
+        </p>
+        <p class="mt-8 text-stone-300 max-w-2xl mx-auto italic font-light">
+          Tanaman adalah tanda kebesaran Allah dan sarana untuk menjaga
+          kehidupan di bumi.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-32 px-6">
+      <div
+        class="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 items-center"
+      >
+        <div class="md:w-1/2" data-aos="fade-right">
+          <h2 class="text-5xl font-bold mb-10">Tahukah Kamu?</h2>
+          <div class="space-y-8">
+            <div class="flex gap-6">
+              <div
+                class="flex-shrink-0 w-12 h-12 rounded-full border border-sprout flex items-center justify-center text-sprout font-bold"
+              >
+                01
+              </div>
+              <div>
+                <h4 class="text-xl font-bold mb-2">Fakta Singkat</h4>
+                <p class="text-stone-500">
+                  Kangkung dapat tumbuh subur di air maupun tanah lembap,
+                  menjadikannya tanaman paling adaptif.
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-6">
+              <div
+                class="flex-shrink-0 w-12 h-12 rounded-full border border-sprout flex items-center justify-center text-sprout font-bold"
+              >
+                02
+              </div>
+              <div>
+                <h4 class="text-xl font-bold mb-2">Cara Tanam</h4>
+                <p class="text-stone-500">
+                  Gunakan benih unggul, beri jarak 5cm, dan pastikan penyiraman
+                  rutin dua kali sehari.
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-6">
+              <div
+                class="flex-shrink-0 w-12 h-12 rounded-full border border-sprout flex items-center justify-center text-sprout font-bold"
+              >
+                03
+              </div>
+              <div>
+                <h4 class="text-xl font-bold mb-2">Waktu Panen</h4>
+                <p class="text-stone-500">
+                  Sangat cepat! Anda bisa memanen kangkung segar hanya dalam
+                  25-30 hari setelah tanam.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="md:w-1/2 relative" data-aos="fade-left">
+          <div class="relative rounded-[3rem] overflow-hidden shadow-2xl">
+            <img
+              src="https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?auto=format&fit=crop&q=80&w=1000"
+              alt="Education"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-32 px-6">
+      <div
+        class="max-w-6xl mx-auto rounded-[4rem] bg-stone-100 dark:bg-stone-900 p-16 md:p-32 text-center border border-stone-200 dark:border-stone-800 relative overflow-hidden"
+      >
+        <div class="relative z-10">
+          <h2
+            class="glow-text text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tighter"
+          >
+            HIJAUKAN MASJID.<br />RAWAT BUMI.<br />TEBAR MANFAAT.
+          </h2>
+          <p
+            class="text-xl md:text-2xl text-stone-500 dark:text-stone-400 max-w-2xl mx-auto font-light mb-12"
+          >
+            Dari satu tanaman, tumbuh kebaikan untuk manusia, alam, dan rumah
+            ibadah.
+          </p>
+          <!-- <button
+            class="px-12 py-5 bg-leaf text-white rounded-full font-bold text-lg shadow-xl hover:bg-sprout hover:scale-105 transition-all"
+          >
+            Mulai Bertanam Sekarang
+          </button> -->
+
+          <a href="donasi.php" class="inline-block">
+    <button class="px-14 py-6 bg-leaf text-white rounded-full font-bold text-lg hover:bg-night transition-all shadow-2xl hover:scale-105">
+        Ayo Beramal Jariyah Sekarang <i class="fas fa-arrow-right ml-2 text-sprout"></i>
+    </button>
+        </a>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      class="py-12 text-center text-stone-400 text-sm border-t border-stone-200 dark:border-stone-800"
+    >
+      <p>&copy; 2026 Urban Farming Experience • Makassar Digital Garden</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 1000, once: true });
+
+      // Cursor Tracking Logic
+      const lightTrail = document.getElementById("light-trail");
+      const heroImg = document.getElementById("hero-img");
+
+      document.addEventListener("mousemove", (e) => {
+        lightTrail.style.left = e.clientX + "px";
+        lightTrail.style.top = e.clientY + "px";
+
+        // Subtle Parallax on Hero
+        const xMove = (e.clientX - window.innerWidth / 2) / 50;
+        const yMove = (e.clientY - window.innerHeight / 2) / 50;
+        heroImg.style.transform = `scale(1.1) translate(${xMove}px, ${yMove}px)`;
+      });
+
+      // Toggle Theme
+      function toggleTheme() {
+        const html = document.documentElement;
+        const icon = document.getElementById("theme-icon");
+        if (html.classList.contains("dark")) {
+          html.classList.remove("dark");
+          icon.innerText = "🌙";
+          localStorage.theme = "light";
+        } else {
+          html.classList.add("dark");
+          icon.innerText = "☀️";
+          localStorage.theme = "dark";
+        }
+      }
+
+      // Initialize Theme
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+        document.getElementById("theme-icon").innerText = "☀️";
+      }
+    </script>
+  </body>
+</html>

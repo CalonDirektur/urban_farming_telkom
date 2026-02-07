@@ -1,0 +1,150 @@
+<?php
+$tanaman = [
+  [
+    "nama" => "Bayam",
+    "file" => "bayam.html",
+    "deskripsi" => "Sumber zat besi, baik untuk darah dan jantung.",
+    "icon" => "fas fa-seedling"
+  ],
+  [
+    "nama" => "Bonte",
+    "file" => "bonte.html",
+    "deskripsi" => "Segar, tinggi air, baik untuk hidrasi tubuh.",
+    "icon" => "fas fa-carrot"
+  ],
+  [
+    "nama" => "Cabe",
+    "file" => "cabe.html",
+    "deskripsi" => "Mengandung capsaicin dan antioksidan.",
+    "icon" => "fas fa-pepper-hot"
+  ],
+  [
+    "nama" => "Kangkung",
+    "file" => "kangkung.html",
+    "deskripsi" => "Sayuran hijau mudah tumbuh dan kaya nutrisi.",
+    "icon" => "fas fa-leaf"
+  ],
+  [
+    "nama" => "Kemangi",
+    "file" => "kemangi.html",
+    "deskripsi" => "Aromatik, kaya antioksidan alami.",
+    "icon" => "fas fa-spa"
+  ],
+  [
+    "nama" => "Kenikir",
+    "file" => "kenikir.html",
+    "deskripsi" => "Daun tradisional kaya manfaat kesehatan.",
+    "icon" => "fas fa-seedling"
+    
+  ],
+  [
+    "nama" => "Sawi",
+    "file" => "sawi.html",
+    "deskripsi" => "Tinggi vitamin A, C, dan K.",
+    "icon" => "fas fa-leaf"
+  ],
+  [
+    "nama" => "Selada",
+    "file" => "selada.html",
+    "deskripsi" => "Rendah kalori, baik untuk diet sehat.",
+    "icon" => "fas fa-leaf"
+  ],
+  [
+    "nama" => "Seledri",
+    "file" => "seledri.html",
+    "deskripsi" => "Baik untuk tekanan darah dan pencernaan.",
+    "icon" => "fas fa-heartbeat"
+  ]
+];
+?>
+
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <title>Urban Farming Experience</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+  />
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            leaf: "#166534",
+            sprout: "#22C55E",
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 transition-colors duration-500">
+
+<!-- HERO -->
+<section class="py-24 text-center">
+  <h1 class="text-5xl md:text-7xl font-black italic mb-6">
+    Urban Farming Experience
+  </h1>
+  <p class="max-w-2xl mx-auto text-lg text-stone-600 dark:text-stone-400">
+    Jelajahi berbagai tanaman urban farming beserta manfaat kesehatannya.
+  </p>
+</section>
+
+<!-- GRID TANAMAN -->
+<section class="px-6 pb-32 max-w-7xl mx-auto">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+    
+    <?php foreach ($tanaman as $item): ?>
+      <a
+        href="<?= $item['file']; ?>"
+        class="group p-10 bg-white dark:bg-stone-900 rounded-[2.5rem]
+               border border-stone-200 dark:border-stone-800
+               shadow-sm hover:shadow-2xl
+               transition-all duration-500 hover:-translate-y-2"
+      >
+        <div
+          class="w-16 h-16 mb-8 rounded-2xl
+                 bg-green-50 dark:bg-leaf/20
+                 text-leaf dark:text-sprout
+                 flex items-center justify-center
+                 group-hover:bg-sprout group-hover:text-white
+                 transition-all"
+        >
+          <i class="<?= $item['icon']; ?> text-3xl"></i>
+        </div>
+
+        <h3 class="text-2xl font-bold mb-3 italic">
+          <?= $item['nama']; ?>
+        </h3>
+
+        <p class="text-stone-600 dark:text-stone-400">
+          <?= $item['deskripsi']; ?>
+        </p>
+
+        <div class="mt-6 text-sprout font-semibold">
+          Lihat Detail →
+        </div>
+      </a>
+    <?php endforeach; ?>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-10 text-center text-xs text-stone-400 border-t border-stone-200 dark:border-stone-800">
+  © 2026 Urban Farming Experience • Komunitas Masjid Hijau
+</footer>
+
+</body>
+</html>
